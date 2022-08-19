@@ -47,12 +47,10 @@ def delete(response, id):
 
     return render(response, 'main/delete.html', {'id': id})
 
-## try to access the form with ['questionTwo'] ::D:D:D:D:
 
 def edit(response, id):
     question_id = Question.objects.get(id=id)
     form = CreateNewQuestion(response.POST or None, instance=question_id)
-    # form['questionTwo'].value = 'ey'
     if form.is_valid():
         form.save()
         return redirect('show_questions')
