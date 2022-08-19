@@ -1,0 +1,79 @@
+{% extends "main/base.html" %}
+
+{% block title %}
+View Questions
+{% endblock %}
+
+{% block content %}
+<style>
+
+        .nowrap {
+            white-space: nowrap;
+        }
+
+
+
+</style>
+<div style="position:absolute; background-color:#ffffff;margin-top: 20px; padding-top: 30px; padding-left: 150px;
+     padding-right: 500px; height: 600px; width: 1590px;">
+    <div class="break-word " style="width: 1300px;">
+
+    {% for td in user.question_search.all %}
+
+    <div style="text-align: left;">
+        <p>
+                <span id="eye" class="nowrap" style="position:absolute;  border-radius: 25px; background-color: #E8E8E8;
+                 padding: 15px; width: 1300px;color:black; font-family: Verdana; font-size: 18px;
+                  margin-bottom:30px;text-overflow: ellipsis; overflow: hidden;">{{td.id}}. {{ td.name }}
+                </span>
+
+
+        <div style="background-color:white; border-radius: 25px; border-color: black; margin-left:1120px; border: 4px solid #E8E8E8;
+                     width: 180px; height: 56px;
+                     position:relative; z-index: 9;">
+
+                <input type="image" src="https://i.pinimg.com/736x/3f/c3/ac/3fc3acc7c62431700686b6e4e38e7d2d.jpg"
+                       alt="Eye" width="40"
+                       style="float: right;margin-top:3px; margin-right:20px;" onclick="viewQuestion({{td.id}})"/>
+            <form action="../edit/{{td.id}}">
+                <input type="image" src="https://i.pinimg.com/originals/a0/d4/0d/a0d40d4796d9c1c462a7fb1ebb7b3166.jpg"
+                       alt="Pencil" width="60" style="position:relative; float: right; display:block"/>
+            </form>
+            <form action="../delete/{{td.id}}">
+                <input type="image"
+                       src="https://p.kindpng.com/picc/s/108-1082635_trash-can-trash-can-icon-transparent-hd-png.png"
+                       alt="Bin" width="25"
+                       style="position:relative; float: right; bottom: 8px;"/>
+            </form>
+        </div>
+        </div>
+            <div id="viewDiv{{td.id}}" style="z-index: 20; display: none; position:absolute; margin-left: 80px; background-color:#ffffff;
+            border: 2px solid black; width: 1200px; height: 300px;">
+            <h1 style="margin-top: 50px; color:black; text-align: center;">{{td.name}}</h1>
+            </div>
+    {% endfor %}
+    </div>
+</div>
+
+<p style="font-size: 20px; z-index: 9; position:absolute; padding-top: 20px; padding-left: 10px;">Ask a <a href="../question">question</a></p>
+
+    <script>
+    function viewQuestion(parameter_id) {
+        {% for td in user.question_search.all %}
+            if (parameter_id === {{td.id}}) {
+                var real_id = {{td.id}};
+            }
+        {% endfor %}
+          var x = document.getElementById("viewDiv" + real_id);
+          if (x.style.display === "none") {
+            x.style.display = "block";
+          } else {
+            x.style.display = "none";
+          }
+    }
+
+    </script>
+
+{% endblock %}
+
+

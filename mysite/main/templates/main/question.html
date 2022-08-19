@@ -1,0 +1,76 @@
+{% extends "main/base.html" %}
+
+{% block title %}
+Ask a question
+{% endblock %}
+
+
+{% block content %}
+<style type="text/css">
+
+    .vl {
+        border-left: 8px solid white;
+        top: 3px;
+        height: 640px;
+        position: absolute;
+        left: 790px;
+    }
+
+</style>
+
+<div class="vl"></div>
+
+<div style="padding-top: 100px; position: absolute;">
+    <h1 style="padding-left: 1150px; font-family: Franklin Gothic Medium; color:white; font-size: 60px;">FAQ</h1>
+    <ul style="">
+    <li>
+        <p style="color:white; padding-left: 1050px;  font-size: 20; font-family: Consolas;">How old are you? - 17</p>
+    </li>
+    <li>
+        <p style="color:white; padding-left: 1000px; right: 100px; font-size: 20; font-family: Consolas;">Where are you from? - Macedonia</p>
+    </li>
+    <li>
+        <p style="color:white; padding-left: 955px; right: 100px; font-size: 20; font-family: Consolas;">How long have you been programming for?<br>&#8205 &#8205 &#8205 &#8205 &#8205 &#8205 &#8205 &#8205 &#8205 &#8205    -2 and a half years</p>
+    </li>
+    <li>
+        <p style="color:white; padding-left: 1020px; right: 100px; font-size: 20; font-family: Consolas;">What are your other hobbies?<br>&#8205 &#8205 &#8205 &#8205 &#8205 - Gym and Reading</p>
+    </li>
+    <li>
+        <p style="color:white; padding-left: 961px; right: 100px; font-size: 20; font-family: Consolas;">What programming languages do you know?<br>&#8205 &#8205 &#8205 &#8205 &#8205 &#8205 - Python, Java, PostgreSQL</p>
+    </li>
+</ul>
+</div>
+
+<h1 style="position: absolute; font-family: Franklin Gothic Medium; color:white; padding-left: 93px; padding-top: 100px; font-size: 60px;">
+    What is your question?
+</h1>
+<ul style="position: absolute; padding-left: 150px; padding-top:190px;">
+    <li>
+        <p style="color:white; padding-left: 39px; font-size: 20; font-family: Consolas;">Keep the question not too long.</p>
+    </li>
+    <li>
+        <p style="color:white; padding-left: 103px; font-size: 20; font-family: Consolas;">Use only english.</p>
+    </li>
+    <li>
+        <p style="color:white; padding-left: 47px; font-size: 20; font-family: Consolas;">Don't spam the same question.</p>
+    </li>
+    <li>
+        <p style="color:white; padding-left: 5px; font-size: 20; font-family: Consolas;">Check if your question is in the FAQ.</p>
+    </li>
+    <li>
+        <p style="color:white; padding-left: 5px; font-size: 20; font-family: Consolas;">Question must be longer then 5 chars.</p>
+    </li>
+</ul>
+<form method="post" action="/question/" class="form-group">
+    {{form.name}}
+    {% csrf_token %}
+    <div style="position: absolute; margin-left: 130px; margin-top: 410px;" class="input-group mb-3">
+            {{form.question}}
+        <button type="submit" name="save" class="btn btn-primary">Ask</button>
+    </div>
+</form>
+
+
+<div style="position:absolute; background-color:black; width: 200px; height: 50px; bottom: 600px;">
+</div>
+{% endblock %}
